@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск поставщиков и доставка из Китая под ключ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-green: #1a472a;
+            --medium-green: #2e8b57;
+            --light-green: #3cb371;
+            --accent-green: #4caf50;
+            --text-light: #f0f8ff;
+            --text-gray: #e0e0e0;
+            --transparent-bg: rgba(26, 71, 42, 0.85);
+            --section-bg: rgba(30, 80, 50, 0.7);
+            --clover: #4CAF50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-light);
+            background: linear-gradient(rgba(20, 50, 30, 0.9), rgba(20, 50, 30, 0.9)), 
+                        url('https://images.unsplash.com/photo-1544197807-bb503430e22d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center fixed;
+            background-size: cover;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .clover {
+            width: 50px;
+            height: 50px;
+            background: var(--clover);
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .clover::before,
+        .clover::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--clover);
+            border-radius: 50%;
+        }
+        
+        .clover::before {
+            top: -15px;
+            left: 5px;
+        }
+        
+        .clover::after {
+            bottom: -15px;
+            left: 5px;
+        }
+        
+        .logo h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2.2rem;
+            color: var(--text-light);
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero {
+            background: var(--transparent-bg);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--light-green), var(--accent-green), var(--light-green));
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .years-badge {
+            display: inline-block;
+            background: var(--accent-green);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        /* Services Section */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+        
+        .service-card {
+            background: var(--section-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--light-green), var(--accent-green));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .service-image {
+            height: 200px;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-image img {
+            transform: scale(1.05);
+        }
+        
+        /* Reviews Section */
+        .reviews {
+            margin: 50px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent-green);
+            border-radius: 2px;
+        }
+        
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .review-card {
+            background: var(--section-bg);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .review-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--accent-green);
+        }
+        
+        .review-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .review-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .review-date {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+        
+        .review-stars {
+            color: gold;
+            margin: 10px 0;
+        }
+        
+        .review-content {
+            font-style: italic;
+            line-height: 1.5;
+        }
+        
+        /* Process Section */
+        .process {
+            margin: 60px 0;
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .step {
+            background: var(--section-bg);
+            width: 200px;
+            padding: 25px 15px;
+            text-align: center;
+            border-radius: 15px;
+            position: relative;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .step-image {
+            width: 100%;
+            height: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .step-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: white;
+        }
+        
+        .step h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: var(--transparent-bg);
+            padding: 50px;
+            text-align: center;
+            border-radius: 20px;
+            margin: 60px 0;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 71, 42, 0.85);
+            border-radius: 20px;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .cta h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent-green);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: linear-gradient(to right, var(--light-green), var(--accent-green));
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255,255,255,0.3);
+            transform: rotate(30deg);
+            transition: all 0.6s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(to right, var(--accent-green), var(--light-green));
+        }
+        
+        .btn:hover::after {
+            left: 120%;
+        }
+        
+        /* Suppliers Section */
+        .suppliers {
+            background: var(--section-bg);
+            padding: 50px;
+            border-radius: 20px;
+            margin: 60px 0;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+        
+        .suppliers h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        
+        .suppliers-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .suppliers-list {
+            background: rgba(20, 50, 30, 0.6);
+            padding: 25px;
+            border-radius: 15px;
+        }
+        
+        .suppliers-list h4 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .suppliers-list h4 i {
+            color: var(--accent-green);
+        }
+        
+        .suppliers-list ul {
+            list-style-type: none;
+        }
+        
+        .suppliers-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .suppliers-list li i {
+            color: var(--accent-green);
+            min-width: 20px;
+        }
+        
+        .suppliers-image {
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .suppliers-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .suppliers-info {
+            background: rgba(20, 50, 30, 0.6);
+            padding: 25px;
+            border-radius: 15px;
+        }
+        
+        .advantage-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .advantage-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .price-tag {
+            background: var(--accent-green);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .price-tag h4 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .warning {
+            background: rgba(255, 100, 100, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 100, 100, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(15, 35, 20, 0.95);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info h4,
+        .legal h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent-green);
+        }
+        
+        .tg-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-light);
+            text-decoration: none;
+            background: rgba(76, 175, 80, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .tg-link:hover {
+            background: rgba(76, 175, 80, 0.4);
+            transform: translateX(5px);
+        }
+        
+        .legal-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .legal-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .legal-links a:hover {
+            color: var(--accent-green);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Animation Effects */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animated {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 25px;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .service-card {
+                padding: 20px;
+            }
+            
+            .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .cta, .suppliers {
+                padding: 30px;
+            }
+            
+            .suppliers-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Logo -->
+        <header>
+            <div class="logo">
+                <div class="clover">
+                    <i class="fas fa-clover" style="color: white; font-size: 24px; z-index: 10;"></i>
+                </div>
+                <h1>ChinaImportPro</h1>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero animated">
+            <h2>Поиск поставщиков, брендирование и доставка из Китая — под ключ</h2>
+            <p>Мы помогаем бизнесам находить надёжных поставщиков в Китае, создаём брендированную продукцию и организуем быструю доставку в Россию.</p>
+            <p class="years-badge">Работаем с 2021 года. Знаем, где выгодно, и с кем нельзя иметь дело.</p>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services">
+            <div class="service-card animated delay-1">
+                <div class="service-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Поиск товара и фабрики "под ваш запрос"</h3>
+                <p>Ищем именно то, что вам нужно. Знаем, кто делает качественно, а кто лишь обещает. Собственная база проверенных поставщиков.</p>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1605733513597-a8f8341084e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1529&q=80" alt="Поиск поставщиков">
+                </div>
+            </div>
+            
+            <div class="service-card animated delay-1">
+                <div class="service-icon">
+                    <i class="fas fa-trademark"></i>
+                </div>
+                <h3>Брендирование под ключ</h3>
+                <p>Помогаем с логотипом, упаковкой, этикетками. Ваш бренд — ваша сила. Мы её усилим.</p>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1605733513447-3df9d2e1f78d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Брендирование">
+                </div>
+            </div>
+            
+            <div class="service-card animated delay-2">
+                <div class="service-icon">
+                    <i class="fas fa-shipping-fast"></i>
+                </div>
+                <h3>Организация доставки</h3>
+                <p>От фабрики до вашего склада. Под ключ. С фотоотчётами, видео, контролем каждого этапа.</p>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1605733512297-2f36b0ee2850?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Доставка">
+                </div>
+            </div>
+            
+            <div class="service-card animated delay-2">
+                <div class="service-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>Экспертная поддержка 24/7</h3>
+                <p>Мы всегда на связи. Команда китайско- и русскоговорящих менеджеров слаженно выполнит работу с 0.</p>
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1605733512302-4a6d3a1b1e02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Поддержка">
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="reviews">
+            <h3 class="section-title">💬 Отзывы клиентов</h3>
+            <div class="reviews-container">
+                <div class="review-card animated delay-1">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Анна Смирнова">
+                        </div>
+                        <div>
+                            <div class="review-name">Анна Смирнова</div>
+                            <div class="review-date">15 мая 2023</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-content">
+                        "Работаю с ChinaImportPro уже больше года. Нашли отличных поставщиков посуды. Качество всегда на высоте, доставка быстрая. Особенно ценю помощь с брендированием - упаковка получилась просто супер!"
+                    </div>
+                </div>
+                
+                <div class="review-card animated delay-2">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Дмитрий Иванов">
+                        </div>
+                        <div>
+                            <div class="review-name">Дмитрий Иванов</div>
+                            <div class="review-date">28 июня 2023</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="review-content">
+                        "Заказал первую партию электроники через ChinaImportPro. Были сомнения, но команда профессионально сопроводила весь процесс. Особенно понравились фотоотчеты с производства. Теперь планирую постоянное сотрудничество."
+                    </div>
+                </div>
+                
+                <div class="review-card animated delay-3">
+                    <div class="review-header">
+                        <div class="review-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ольга Петрова">
+                        </div>
+                        <div>
+                            <div class="review-name">Ольга Петрова</div>
+                            <div class="review-date">3 июля 2023</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-content">
+                        "Запускала линию детской одежды. ChinaImportPro помогли не только с поиском фабрики, но и с разработкой дизайна, этикеток. Результат превзошёл ожидания! Клиенты в восторге от качества и дизайна."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process">
+            <h3 class="section-title">Как это работает</h3>
+            <div class="steps">
+                <div class="step animated delay-1">
+                    <div class="step-number">1</div>
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Заявка">
+                    </div>
+                    <h4>Заявка</h4>
+                    <p>По Вашему ТЗ находим все необходимое для бизнеса</p>
+                </div>
+                
+                <div class="step animated delay-2">
+                    <div class="step-number">2</div>
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Подбор поставщика">
+                    </div>
+                    <h4>Подбор поставщика</h4>
+                    <p>Проверяем, оцениваем риски</p>
+                </div>
+                
+                <div class="step animated delay-3">
+                    <div class="step-number">3</div>
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1516383740770-fbcc5ccbece0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Производство">
+                    </div>
+                    <h4>Производство и брендирование</h4>
+                    <p>Согласование образцов</p>
+                </div>
+                
+                <div class="step animated delay-1">
+                    <div class="step-number">4</div>
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1605733513597-a8f8341084e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1529&q=80" alt="Доставка">
+                    </div>
+                    <h4>Доставка</h4>
+                    <p>Фото, видео, контроль логистики</p>
+                </div>
+                
+                <div class="step animated delay-2">
+                    <div class="step-number">5</div>
+                    <div class="step-image">
+                        <img src="https://images.unsplash.com/photo-1605733512302-4a6d3a1b1e02?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Получение товара">
+                    </div>
+                    <h4>Получение товара</h4>
+                    <p>На ваш склад в РФ</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="cta-content">
+                <h3>Сервис под ключ</h3>
+                <p>Индивидуальный расчёт по брифу. Бесплатный аудит вашей первой партии.</p>
+                <a href="#" class="btn">Оплатить</a>
+            </div>
+        </section>
+
+        <!-- Suppliers Section -->
+        <section class="suppliers">
+            <h3>Доступ в закрытую базу поставщиков</h3>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Хватит искать "где попало". У нас — реальные проверенные фабрики.</p>
+            
+            <div class="suppliers-content">
+                <div class="suppliers-list">
+                    <h4><i class="fas fa-database"></i> Что же есть в нашей базе?</h4>
+                    <ul>
+                        <li><i class="fas fa-utensils"></i> лучшие поставщики Canton Fair (посуда, мебель из ротанга, товары для животных, предметы интерьера, школьная форма и тд)</li>
+                        <li><i class="fas fa-car"></i> авторынок (запчасти на китайские и европейские машины)</li>
+                        <li><i class="fas fa-store"></i> экспортные магазины</li>
+                        <li><i class="fas fa-couch"></i> дизайнерская и корпусная мебель</li>
+                        <li><i class="fas fa-shoe-prints"></i> магазины с экспортной обувью</li>
+                        <li><i class="fas fa-tshirt"></i> сумки, обувь, одежда, аксессуары</li>
+                        <li><i class="fas fa-laptop"></i> электроника</li>
+                        <li><i class="fas fa-pump-soap"></i> косметика</li>
+                        <li><i class="fas fa-bed"></i> постельное белье</li>
+                        <li><i class="fas fa-motorcycle"></i> квадроциклы, мотоциклы, баги и тд</li>
+                    </ul>
+                    
+                    <div class="suppliers-image">
+                        <img src="https://images.unsplash.com/photo-1605733511429-01974fac79e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Поставщики">
+                    </div>
+                </div>
+                
+                <div class="suppliers-info">
+                    <h4><i class="fas fa-star"></i> Преимущества базы</h4>
+                    
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <strong>База большая и насыщенная</strong>
+                            <p>Контакты в ней будут пополняться.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div>
+                            <strong>Рабочие контакты</strong>
+                            <p>Это не просто пустой список - это рабочая база, которой мы пользуемся для поиска товаров для наших клиентов.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="advantage-item">
+                        <div class="advantage-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div>
+                            <strong>Экспертное сообщество</strong>
+                            <p>Так же в ней есть чат, где вы сможете обсуждать покупки и делиться ссылками.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="warning">
+                        <h4><i class="fas fa-exclamation-triangle"></i> ВАЖНО</h4>
+                        <p>База защищена от копирования, поэтому любое распространение контактов из нее чревато баном без возврата средств</p>
+                    </div>
+                    
+                    <div class="price-tag">
+                        <h4>Подписка на базу поставщиков</h4>
+                        <div class="price">7 900 ₽ <span style="font-size: 1rem;">/ месяц</span></div>
+                        <a href="#" class="btn">Получить доступ</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="contact-info">
+                    <h4>Контакты</h4>
+                    <p>ИП Калайтанова Татьяна Игоревна</p>
+                    <p>ИНН 231122430310</p>
+                    <a href="https://t.me/cargo232" class="tg-link">
+                        <i class="fab fa-telegram"></i>
+                        Написать в Telegram: @cargo232
+                    </a>
+                </div>
+                
+                <div class="legal">
+                    <h4>Документы</h4>
+                    <div class="legal-links">
+                        <a href="#"><i class="fas fa-file-contract"></i> Оферта</a>
+                        <a href="#"><i class="fas fa-shield-alt"></i> Политика конфиденциальности</a>
+                        <a href="#"><i class="fas fa-user-shield"></i> Соглашение о персональных данных</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 ChinaImportPro. Все права защищены.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
